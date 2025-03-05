@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown, Leaf, Droplet, Factory, ChevronRight, Menu, X, Sun, CloudRain, Thermometer, Cpu } from 'lucide-react';
+import { Leaf, Cpu, CloudRain, Sun } from 'lucide-react';
 
-// Previous components remain the same...
-// (Navbar, Hero, and Stats components as before)
-
-// Technology Showcase Section
-const TechnologyShowcase = () => {
+const TechnologyShowcase: React.FC = () => {
   const [activeFeature, setActiveFeature] = useState(0);
 
   const features = [
     {
-      icon: <Leaf className="w-8 h-8" />, // Replaced Plant with Leaf
+      icon: <Leaf className="w-8 h-8" />,
       title: "Smart Growth Systems",
+      image: "/images/v.jpg",
       description: "Advanced hydroponics and vertical stacking technology maximizing growth in minimal space",
       detail: "Our proprietary vertical stacking system enables up to 20x more produce per square foot compared to traditional farming methods."
     },
     {
       icon: <Cpu className="w-8 h-8" />,
       title: "Automated Climate Control",
+      image: "/images/c.jpg",
       description: "AI-powered environmental management for optimal growing conditions",
       detail: "24/7 monitoring and adjustment of temperature, humidity, and light levels ensures perfect growing conditions year-round."
     },
     {
       icon: <CloudRain className="w-8 h-8" />,
       title: "Water Conservation",
+      image: "/images/w.png",
       description: "Closed-loop water recycling system saving 95% water compared to traditional farming",
       detail: "Our advanced filtration and recycling systems maximize water efficiency while maintaining optimal nutrient levels."
     },
     {
       icon: <Sun className="w-8 h-8" />,
       title: "LED Lighting Technology",
+      image: "/images/c.jpg",
       description: "Specialized LED arrays providing optimal light spectrums for different growth stages",
       detail: "Smart lighting systems adjust intensity and spectrum throughout the growing cycle, maximizing photosynthesis efficiency."
     }
@@ -59,9 +59,10 @@ const TechnologyShowcase = () => {
           <div className="relative h-96 bg-gradient-to-br from-green-100 to-green-50 rounded-2xl overflow-hidden shadow-xl">
             <div className="absolute inset-0 flex items-center justify-center">
               <img
-                src="/images/v.jpg"
-                alt="Vertical farming technology"
-                className="object-cover w-full h-full"
+                key={activeFeature} // This ensures a re-render when activeFeature changes
+                src={features[activeFeature].image}
+                alt={features[activeFeature].title}
+                className="object-cover w-full h-full transition-all duration-500 ease-in-out transform hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-green-900/20 to-transparent" />
             </div>

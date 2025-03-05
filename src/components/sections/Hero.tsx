@@ -28,7 +28,7 @@ const Hero = () => {
           </button>
         </div>
         
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ArrowDown className="text-white" size={32} />
         </div>
       </div>
