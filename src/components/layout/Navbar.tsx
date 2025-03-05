@@ -16,20 +16,20 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
+      isScrolled ? 'bg-white shadow-lg' : 'bg-transparent text-white'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <span className="text-2xl font-bold text-green-600">VerticalCrop</span>
+            <span className={`text-2xl font-bold ${isScrolled ?'text-green-600':'text-white'} `}>VerticalCrop</span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-green-600 transition">Home</a>
-            <a href="#technology" className="text-gray-700 hover:text-green-600 transition">Technology</a>
-            <a href="#impact" className="text-gray-700 hover:text-green-600 transition">Impact</a>
-            <a href="#contact" className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+          <div className={`hidden md:flex items-center space-x-8`}>
+            <a href="#home" className={`text-gray-700 ${ isScrolled?'':'text-white'} hover:text-green-600 transition`}>Home</a>
+            <a href="#technology" className={`text-gray-700 ${ isScrolled?'':'text-white'} hover:text-green-600 transition`}>Technology</a>
+            <a href="#impact" className={`text-gray-700 ${ isScrolled?'':'text-white'} hover:text-green-600 transition`}>Impact</a>
+            <a href="#contact" className={`bg-green-600 ${ isScrolled?'':'text-white'} text-white px-4 py-2 rounded-lg hover:bg-green-700 transition`}>
               Contact Us
             </a>
           </div>

@@ -1,14 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Globe, Trees, Sprout } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Label } from 'recharts';
 
+// Define types for our data and props
+interface ChartDataPoint {
+  month: string;
+  water: number;
+  carbon: number;
+  traditional: number;
+}
 
-// Impact Section
-const ImpactSection = () => {
-  const [activeTab, setActiveTab] = useState('environmental');
-  
-  // Sample data for the impact chart
-  const chartData = [
+interface ImpactMetric {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  description: string;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    color?: string;
+    name?: string;
+    value?: number | string;
+  }>;
+  label?: string;
+}
+
+// Custom Tooltip Component with TypeScript
+const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+        <p className="font-bold text-gray-900">{label}</p>
+        {payload.map((entry, index) => (
+          <p key={index} className="text-sm" style={{ color: entry.color }}>
+            {entry.name}: {entry.value}
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
+// Impact Section Component
+const ImpactSection: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'environmental' | 'carbon'>('environmental');
+
+  // Sample data for the impact chart with explicit typing
+  const chartData: ChartDataPoint[] = [
     { month: 'Jan', water: 2000, carbon: 150, traditional: 4000 },
     { month: 'Feb', water: 1800, carbon: 140, traditional: 4100 },
     { month: 'Mar', water: 1900, carbon: 145, traditional: 4050 },
@@ -17,7 +58,7 @@ const ImpactSection = () => {
     { month: 'Jun', water: 1500, carbon: 125, traditional: 4300 },
   ];
 
-  const impactMetrics = [
+  const impactMetrics: ImpactMetric[] = [
     {
       icon: <Globe className="w-12 h-12" />,
       title: "Carbon Footprint",
@@ -96,25 +137,38 @@ const ImpactSection = () => {
 
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Line 
-                  type="monotone" 
+              <BarChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="month" stroke="#6b7280">
+                  <Label value="Month" offset={-5} position="insideBottom" />
+                </XAxis>
+                <YAxis stroke="#6b7280">
+                  <Label 
+                    value={activeTab === 'environmental' ? 'Liters (Water)' : 'Tons (Carbon)'} 
+                    angle={-90} 
+                    position="insideLeft" 
+                    style={{ textAnchor: 'middle' }} 
+                  />
+                </YAxis>
+                <Tooltip content={<CustomTooltip />} />
+                <Legend 
+                  verticalAlign="top" 
+                  height={36}
+                  formatter={(value) => (
+                    <span className="text-gray-600">{value}</span>
+                  )}
+                />
+                <Bar 
                   dataKey={activeTab === 'environmental' ? 'water' : 'carbon'} 
-                  stroke="#16a34a" 
-                  strokeWidth={2} 
+                  fill="#16a34a" 
+                  name={activeTab === 'environmental' ? 'Vertical Farming Water Usage' : 'Vertical Farming Carbon Emissions'}
                 />
-                <Line 
-                  type="monotone" 
+                <Bar 
                   dataKey="traditional" 
-                  stroke="#94a3b8" 
-                  strokeWidth={2} 
-                  strokeDasharray="5 5" 
+                  fill="#94a3b8" 
+                  name="Traditional Farming"
                 />
-              </LineChart>
+              </BarChart>
             </ResponsiveContainer>
           </div>
           <div className="mt-4 text-center text-gray-600">
@@ -125,7 +179,5 @@ const ImpactSection = () => {
     </div>
   );
 };
-
-
 
 export default ImpactSection;

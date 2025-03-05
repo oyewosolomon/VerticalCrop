@@ -7,7 +7,7 @@ const Hero = () => {
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 to-green-600/90 z-10" />
       <img
-        src="/api/placeholder/1920/1080"
+        src="/images/bg.jpg"
         alt="Vertical farming facility"
         className="absolute inset-0 w-full h-full object-cover"
       />
