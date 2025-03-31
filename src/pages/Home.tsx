@@ -59,7 +59,7 @@ export default function Home() {
       <ImpactSection/>
       <ProductGallery/>
     
-      <Testimonials/>
+      {/* <Testimonials/> */}
       <ContactSection/>
       <Footer/>
     </main>

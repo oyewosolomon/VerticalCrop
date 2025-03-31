@@ -81,7 +81,9 @@ const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
-              <Leaf className="w-8 h-8 text-green-400 mr-2" />
+              {/* <Leaf className="w-8 h-8 text-green-400 mr-2" /> */}
+              <svg fill="#ffffff" width="40px" height="40px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>crop</title> <path d="M20 8h-4v-4h4v4zM28 16v-4h-4v4h4zM28 24v-4h-4v4h4zM8 4v4h4v-4h-4zM20 16h4v4h-4v8h-16v-16h8v-4h4v4h4v4zM16 16h-8v8h8v-8zM28 4h-4v4h4v-4zM20 8v4h4v-4h-4z"></path> </g></svg>
+           
               <span className="text-2xl font-bold">VerticalCrop</span>
             </div>
             <p className="text-gray-400 mb-6">

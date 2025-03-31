@@ -49,24 +49,14 @@ const ContactSection: React.FC = () => {
   };
 
   const contactInfo: ContactInfo[] = [
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: 'Call Us',
-      content: '+1 (555) 123-4567',
-      detail: 'Mon-Fri from 9am to 6pm EST',
-    },
+   
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email Us',
       content: 'contact@verticalcrop.com',
       detail: "We'll respond within 24 hours",
     },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: 'Visit Us',
-      content: '123 Innovation Drive',
-      detail: 'Boston, MA 02110',
-    },
+   
   ];
 
   // Google Maps embed URL
